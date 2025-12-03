@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kong Liang or Ethen — My Website</title>
+  <style>
+    :root{--accent:#4a4aff;--bg:#f5f5f5;--card:#fff}
+    *{box-sizing:border-box}
+    body {margin:0;font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;color:#111;background:var(--bg)}
+    header{background:linear-gradient(90deg,var(--accent),#8b5cf6);color:white;padding:18px 20px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:8px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-weight:700}
+    nav{display:flex;gap:12px}
+    nav button{background:transparent;border:1px solid rgba(255,255,255,0.12);color:white;padding:8px 12px;border-radius:8px;cursor:pointer}
+    .hero{padding:56px 20px;text-align:center;background:var(--card)}
+    .hero h1{font-size:30px;margin:0 0 8px}
+    .hero p{margin:0;color:#444}
+    .names{margin-top:18px;display:flex;gap:8px;justify-content:center}
+    .nameBtn{padding:8px 14px;border-radius:999px;border:1px solid #ddd;background:white;cursor:pointer}
+    .nameBtn.active{background:var(--accent);color:white;border-color:transparent}
+    .section{max-width:980px;margin:28px auto;padding:0 20px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
+    footer{padding:20px;text-align:center;color:#666}
+    @media(min-width:700px){.hero h1{font-size:40px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">KL</div>
+      <div>
+        <div style="font-weight:700">Kong Liang / Ethen</div>
+        <div style="font-size:12px;opacity:0.9">Choose a name to display below</div>
+      </div>
+    </div>
+    <nav>
+      <button id="showKong">Show Kong Liang</button>
+      <button id="showEthen">Show Ethen</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1 id="mainName">Rate Kong Liang</h1>
+      <p id="subtitle">Give your rating for Kong Liang below.</p>
+    </section>
+
+    <section class="section" id="rating">
+      <div class="card" style="text-align:center">
+        <h3 style="margin-bottom:10px">Rate Kong Liang</h3>
+        <div id="stars" style="font-size:32px; cursor:pointer; margin-bottom:10px;">
+          ★ ★ ★ ★ ★
+        </div>
+        <p id="result" style="font-size:18px; font-weight:600; color:#444">Click a star to rate</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Kong Liang • Ethen — Demo</footer>
+
+  <script>
+    // Initialize year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const mainName = document.getElementById('mainName');
+    const chips = document.querySelectorAll('.nameBtn');
+    const headerK = document.getElementById('showKong');
+    const headerE = document.getElementById('showEthen');
+
+    function setName(name){
+      mainName.textContent = name;
+      // update active state on chips
+      chips.forEach(c => c.classList.toggle('active', c.dataset.name === name));
+    }
+
+    chips.forEach(ch => ch.addEventListener('click', () => setName(ch.dataset.name)));
+    headerK.addEventListener('click', () => setName('Kong Liang'));
+    headerE.addEventListener('click', () => setName('Ethen'));
+  </script>
+</body>
+</html>
